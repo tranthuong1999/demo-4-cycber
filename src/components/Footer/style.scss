@@ -1,0 +1,33 @@
+.footer-page {
+    background-color: rgb(240,241,244);
+    padding: 30px 50px;
+
+    .footer-page-block-list{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+
+        &.footer-page-block-list-mobile {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        &.footer-page-block-list-tabnet {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-page-block-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            .desc{
+                font-weight: 400;
+                font-size: 16px;
+                transition: 0.4s;
+                &:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

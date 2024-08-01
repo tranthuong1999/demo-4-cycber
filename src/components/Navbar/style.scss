@@ -1,0 +1,133 @@
+.menu {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: fixed;
+    z-index: 1000000;
+    width: 100%;
+    background-color: grey;
+
+    &.menu-screen-small {
+        z-index: 100;
+    }
+
+    .menu-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 65px;
+        margin: 0 40px;
+
+        .icon-menu {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .img-logo {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            .name-header {
+                color: rgb(254, 107, 110);
+                font-size: 24px;
+                font-weight: 700;
+                transition: 0.4s;
+
+                &:hover {
+                    cursor: pointer;
+                    color: red;
+                }
+            }
+
+            img {
+                width: 30px;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .event-cinema {
+            display: flex;
+            gap: 20px;
+        }
+
+        .event-user {
+            position: relative;
+
+            .btn {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                border-radius: 50%;
+                background-color: rgb(254, 107, 110);
+                transition: 0.4s;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #fff;
+                }
+            }
+
+            .img-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .form-register {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            right: 4%;
+            top: 73%;
+            opacity: 0;
+            border-radius: 16px;
+            background-color: green;
+            padding: 20px 40px;
+
+            &-active {
+                opacity: 0;
+            }
+
+            .btn-singup,
+            .btn-signin {
+                padding: 8px 16px;
+                transition: 0.4s;
+
+                &:hover {
+                    background-color: grey;
+                    border-radius: 4px;
+                    padding: 8px 16px;
+                    cursor: pointer;
+                }
+            }
+
+
+        }
+
+        .btn {
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.235;
+            transition: 0.4s;
+            list-style-type: none;
+            font-size: 18px;
+            color: #fff;
+
+            &-1 {
+                color: #fb4226;
+            }
+
+            &:hover {
+                color: #fb4226;
+                cursor: pointer;
+            }
+        }
+    }
+
+}

@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useEffect, useState } from 'react';
+import MenuPage from './components/Navbar';
+import LocationPage from './components/Location';
+import FooterPage from './components/Footer';
+import BackTop from './components/BackTop';
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MenuPage />
+      <LocationPage />
+      <FooterPage />
+      <BackTop />
     </div>
   );
-}
+};
 
 export default App;
