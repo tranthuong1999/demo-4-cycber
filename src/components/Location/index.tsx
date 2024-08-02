@@ -17,7 +17,8 @@ const LocationPage = () => {
 
     return (
         <div className='location-page'>
-            <div className='location-block-1'>
+            <div className={classNames("location-block-1", isMobile ? "location-block-1-mobile" : "")}>
+                {/* <div className='location-block-1'> */}
                 <div className='location-block-1_child-1'>
                     <h6 className='address'>Địa điểm</h6>
                     <p className='go'>Bạn sắp đi đâu?</p>

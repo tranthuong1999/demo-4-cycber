@@ -20,7 +20,14 @@ const FooterPage = () => {
                                 {
                                     item.data.map((desc) => {
                                         return (
-                                            <div className='desc'> {desc}</div>
+                                            <div
+                                                className='desc'
+                                                onClick={() => {
+                                                    window.open("https://www.airbnb.com/", '_blank')
+                                                }}
+                                            >
+                                                {desc}
+                                            </div>
                                         )
                                     })
                                 }

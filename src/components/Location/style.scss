@@ -12,6 +12,20 @@
         border: 2px solid rgb(199, 203, 211);
         padding: 20px;
 
+        &-mobile {
+            flex-direction: column;
+            gap: 15px;
+            border-radius: 1px;
+
+            .location-block-1_child-2 {
+                border-top: 1px solid rgb(194, 198, 206);
+                border-bottom: 1px solid rgb(194, 198, 206);
+                padding: 20px;
+                border-right: 1px solid transparent !important;
+                border-left: 1px solid transparent !important;
+            }
+        }
+
         &_child-1,
         &_child-2 {
             flex: 1;
@@ -154,9 +168,10 @@
     }
 
     .location-block-4 {
-        .header{
+        .header {
             margin-bottom: 20px;
         }
+
         .location-block-4_list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);

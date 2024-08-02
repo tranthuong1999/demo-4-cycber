@@ -131,3 +131,14 @@
     }
 
 }
+
+.custom-menu-mobile {
+    .MuiPaper-root {
+        top: 50px;
+        width: 85%;
+        border-radius: 16px;
+        margin: auto;
+        background-color: #565555;
+        color: #fff;
+    }
+}

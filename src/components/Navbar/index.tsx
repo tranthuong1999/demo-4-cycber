@@ -54,21 +54,6 @@ const MenuPage = (() => {
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-            <List>
-                {(!currentUer ? ['Đăng nhập', 'Đăng kí'] : [`${currentUer?.hoTen}`, "Đăng xuất"]).map((text, index) => (
-                    <ListItem
-                        key={text}
-                        disablePadding
-                    >
-                        <ListItemButton sx={{ '&:hover': styleMenu }}>
-                            <ListItemIcon sx={{ '&:hover': styleMenu }}>
-                                <AccountCircleIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
             <Divider />
             <List>
                 {dataMenu.map((item: any, index) => (
@@ -115,7 +100,7 @@ const MenuPage = (() => {
                                 <div onClick={toggleDrawer(!open)} className='icon-menu'>
                                     <DehazeIcon sx={{ color: "red" }} />
                                 </div>
-                                <Drawer open={open} onClose={toggleDrawer(false)}>
+                                <Drawer  data-aos="fade-down" classes={{ root: "custom-menu-mobile" }} open={open} anchor='top' onClose={toggleDrawer(false)}>
                                     {DrawerList}
                                 </Drawer>
                             </div>
