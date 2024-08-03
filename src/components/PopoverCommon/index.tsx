@@ -1,38 +1,20 @@
-import * as React from 'react';
 import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 
-export default function BasicPopover() {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
-
+export default function BasicPopover(props: { open: boolean, onClose: () => void, content?: any, anchorEl?: any, className?: string }) {
+    const { anchorEl, open, onClose, content, className } = props;
     return (
         <div>
-            <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-                Open Popover
-            </Button>
             <Popover
-                id={id}
                 open={open}
                 anchorEl={anchorEl}
-                onClose={handleClose}
+                onClose={onClose}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}
+                classes={{ root: className }}
             >
-                <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+                {content}
             </Popover>
         </div>
     );
