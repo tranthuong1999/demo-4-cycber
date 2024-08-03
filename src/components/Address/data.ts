@@ -1,12 +1,12 @@
 export const data = [
-    { province: "Hồ Chí Minh", hour: "15 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/hnevi0eqxhxjgh6skplj.webp" },
-    { province: "Cần Thơ", hour: "3 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/lbe3gpqkrwmzt98ce2nj.webp" },
-    { province: "Nha Trang", hour: "6.5 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/xi99sldgebhfvd3n66yx.webp" },
-    { province: "Hà Nội", hour: "15 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/hnevi0eqxhxjgh6skplj.webp" },
-    { province: "Phú Quốc", hour: "7.5 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/v1skk44cynr7gauhzb4e.webp" },
-    { province: "Đà Nẵng", hour: "45 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/tqrm3cthowneesuafbp0.webp" },
-    { province: "Đà Lạt", hour: "30 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/tgt8dxlfwdh41jkptxeg.webp" },
-    { province: "Phan Thiết", hour: "5 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/bt5jrxsl5ljq5bmfqqw0.webp" },
+    { province: "Hồ Chí Minh", hour: "15 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/hnevi0eqxhxjgh6skplj.webp", router: "ho-chi-minh", maViTri: 1 },
+    { province: "Cần Thơ", hour: "3 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/lbe3gpqkrwmzt98ce2nj.webp", router: "can-tho", maViTri: 2 },
+    { province: "Nha Trang", hour: "6.5 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/xi99sldgebhfvd3n66yx.webp", router: 'nha-trang', maViTri: 3 },
+    { province: "Hà Nội", hour: "15 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/hnevi0eqxhxjgh6skplj.webp", router: "ha-noi", maViTri: 4 },
+    { province: "Phú Quốc", hour: "7.5 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/v1skk44cynr7gauhzb4e.webp", router: "phu-quoc", maViTri: 5 },
+    { province: "Đà Nẵng", hour: "45 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/tqrm3cthowneesuafbp0.webp", router: "da-nang", maViTri: 6 },
+    { province: "Đà Lạt", hour: "30 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/tgt8dxlfwdh41jkptxeg.webp", router: "da-lat", maViTri: 7 },
+    { province: "Phan Thiết", hour: "5 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/bt5jrxsl5ljq5bmfqqw0.webp", router: "phan-thiet", maViTri: 8 },
 ]
 
 export const data_any_where = [

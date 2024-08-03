@@ -1,136 +1,153 @@
-.menu {
-    top: 0;
-    left: auto;
-    right: 0;
-    position: fixed;
-    z-index: 1000000;
+.all-menu {
+    height: 400px;
     width: 100%;
-    background-color: grey;
-    // background: url(https://images.unsplash.com/photo-1520769945061-0a448c463865?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80&#39) center bottom / cover no-repeat;
-    &.menu-screen-small {
-        z-index: 100;
+    background: url(https://images.unsplash.com/photo-1520769945061-0a448c463865?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80&#39) center bottom / cover no-repeat;
+
+    &.all-menu::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+        opacity: 0.6;
+        pointer-events: none;
     }
 
-    .menu-bar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        min-height: 65px;
-        margin: 0 40px;
+    .menu {
+        top: 0;
+        left: auto;
+        right: 0;
+        position: fixed;
+        z-index: 1000000;
+        width: 100%;
+        background-color: #fff !important;
+        box-shadow: 0 50px 100px -20px #32325d40, 0 30px 60px -30px #0000004d !important;
 
-        .icon-menu {
-            &:hover {
-                cursor: pointer;
-            }
+        &.menu-screen-small {
+            z-index: 100;
         }
 
-        .img-logo {
+        .menu-bar {
             display: flex;
-            gap: 20px;
+            flex-direction: row;
+            justify-content: space-between;
             align-items: center;
+            min-height: 65px;
+            margin: 0 40px;
 
-            .name-header {
-                color: rgb(254, 107, 110);
-                font-size: 24px;
-                font-weight: 700;
-                transition: 0.4s;
-
+            .icon-menu {
                 &:hover {
                     cursor: pointer;
-                    color: red;
                 }
             }
 
-            img {
-                width: 30px;
-                height: 100%;
-                object-fit: contain;
+            .img-logo {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+
+                .name-header {
+                    color: rgb(254, 107, 110);
+                    font-size: 24px;
+                    font-weight: 700;
+                    transition: 0.4s;
+
+                    &:hover {
+                        cursor: pointer;
+                        color: red;
+                    }
+                }
+
+                img {
+                    width: 30px;
+                    height: 100%;
+                    object-fit: contain;
+                }
             }
-        }
 
-        .event-cinema {
-            display: flex;
-            gap: 20px;
-        }
+            .event-cinema {
+                display: flex;
+                gap: 20px;
+            }
 
-        .event-user {
-            position: relative;
+            .event-user {
+                position: relative;
+
+                .btn {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background-color: rgb(254, 107, 110);
+                    transition: 0.4s;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: #fff;
+                    }
+                }
+
+                .img-btn {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
+            .form-register {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                right: 4%;
+                top: 73%;
+                opacity: 1;
+                border-radius: 16px;
+                background-color: green;
+                padding: 20px 40px;
+                .btn-singup,
+                .btn-signin {
+                    padding: 8px 16px;
+                    transition: 0.4s;
+
+                    &:hover {
+                        background-color: grey;
+                        border-radius: 4px;
+                        padding: 8px 16px;
+                        cursor: pointer;
+                    }
+                }
+
+
+            }
 
             .btn {
-                width: 40px;
-                height: 40px;
-                display: flex;
-                justify-content: center;
-                border-radius: 50%;
-                background-color: rgb(254, 107, 110);
+                border: none;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.235;
                 transition: 0.4s;
+                list-style-type: none;
+                font-size: 18px;
+                // color: #fff;
+                color: #000000de;
 
-                &:hover {
-                    cursor: pointer;
-                    background-color: #fff;
+                &-1 {
+                    // color: #fb4226;
                 }
-            }
-
-            .img-btn {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-        .form-register {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            right: 4%;
-            top: 73%;
-            opacity: 0;
-            border-radius: 16px;
-            background-color: green;
-            padding: 20px 40px;
-
-            &-active {
-                opacity: 0;
-            }
-
-            .btn-singup,
-            .btn-signin {
-                padding: 8px 16px;
-                transition: 0.4s;
 
                 &:hover {
-                    background-color: grey;
-                    border-radius: 4px;
-                    padding: 8px 16px;
+                    color: #fb4226;
                     cursor: pointer;
                 }
             }
-
-
         }
 
-        .btn {
-            border: none;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.235;
-            transition: 0.4s;
-            list-style-type: none;
-            font-size: 18px;
-            color: #fff;
-
-            &-1 {
-                color: #fb4226;
-            }
-
-            &:hover {
-                color: #fb4226;
-                cursor: pointer;
-            }
-        }
     }
-
 }
+
+
 
 .custom-menu-mobile {
     .MuiPaper-root {

@@ -4,19 +4,21 @@ import { useTheme } from "@mui/material/styles";
 import classNames from "classnames";
 import { useMediaQuery } from "@mui/material";
 import { data, data_any_where } from './data';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddressPage = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down(600));
     const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
+    const navigate = useNavigate();
     return (
         <div className='address-page'>
             <div className={classNames("location-block-3", isMobile ? "location-block-3-mobile" : "", isTabnet ? "location-block-3-tabnet" : "")}>
                 {
                     data.map((item) => {
                         return (
-                            <div className='location-block-3_item'>
+                            <div className='location-block-3_item' onClick={() => navigate(`/room/${item.router}`, { state: item.maViTri })}>
                                 <div className='img-logo'>
                                     <img src={item.image} />
                                 </div>

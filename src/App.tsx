@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AddressPage from './components/Address';
 import DetailRoomPage from './components/DetailRoom';
 import NotFoundPage from './components/NotFound';
-
+import RegisterRoomPage from './components/RegisterRoom';
 
 const App = () => {
 
@@ -20,6 +20,17 @@ const App = () => {
       <>
         <MenuPage />
         <LocationPage />
+        {children}
+        <FooterPage />
+        <BackTop />
+      </>
+    );
+  };
+
+  const SecondaryLayout: React.FC<LayoutProps> = ({ children }) => {
+    return (
+      <>
+        <MenuPage />
         {children}
         <FooterPage />
         <BackTop />
@@ -41,11 +52,19 @@ const App = () => {
           }
         />
         <Route
-          path="/detail-room/:provinceCode"
+          path="/room/:province"
           element={
             <MainLayout>
               <DetailRoomPage />
             </MainLayout>
+          }
+        />
+        <Route
+          path="/room-detail/:codeRoom"
+          element={
+            <SecondaryLayout>
+              <RegisterRoomPage />
+            </SecondaryLayout>
           }
         />
         <Route path="*" element={<NotFoundPage />} />
