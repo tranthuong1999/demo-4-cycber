@@ -24,7 +24,7 @@ const DetailRoomPage = () => {
                     {
                         data.map((item) => {
                             return (
-                                <div data-aos="zoom" onClick={() => navigate(`/room-detail/1`, { state: item })} className={classNames("item-room", isMobile ? "item-room-mobile" : "")}>
+                                <div data-aos="zoom-in" onClick={() => navigate(`/room-detail/1`, { state: item })} className={classNames("item-room", isMobile ? "item-room-mobile" : "")}>
                                     <div className='img-logo'>
                                         <img src={item.hinhAnh} />
                                     </div>
