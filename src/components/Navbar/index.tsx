@@ -17,6 +17,9 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import { useNavigate } from 'react-router-dom';
 import ResponsiveModal from '../Modal';
 import classNames from 'classnames';
+import LoginPage from '../Login';
+import useAuthenticationStore from '../../store/authentication';
+import RegisterPage from '../Register';
 
 const dataMenu = [
     { title: "Home" },
@@ -39,7 +42,9 @@ const MenuPage = (() => {
 
     const currentUer = JSON?.parse(localStorage?.getItem("currentUser")!)
     const [open, setOpen] = React.useState(false);
-    const [openModalAuthen, setOpenModalAuthen] = useState(false)
+    const [openModalAuthen, setOpenModalAuthen] = useState(false);
+
+    const { isLogin, setIsLogin, isRegister, setIsRegister } = useAuthenticationStore();
 
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
@@ -87,8 +92,17 @@ const MenuPage = (() => {
                                     {
                                         openModalAuthen &&
                                         <div data-aos="fade-down" data-aos-duration={700} className={classNames("form-register", openModalAuthen ? "form-register-active" : "")}>
-                                            <p className='btn-singup'> Đăng nhập</p>
-                                            <p className='btn-signin'> Đăng kí</p>
+                                            <p className='btn-singup' onClick={() => { setIsLogin(true); setOpenModalAuthen(false); setIsRegister(false) }}> Đăng nhập</p>
+                                            <p
+                                                className='btn-signin'
+                                                onClick={() => {
+                                                    setIsRegister(true);
+                                                    setIsLogin(false);
+                                                    setOpenModalAuthen(false)
+                                                }}
+                                            >
+                                                Đăng kí
+                                            </p>
                                         </div>
                                     }
                                 </>
@@ -107,6 +121,14 @@ const MenuPage = (() => {
                     }
                 </div >
             </div >
+            {
+                isLogin &&
+                < LoginPage />
+            }
+            {
+                isRegister &&
+                < RegisterPage />
+            }
         </div>
     )
 })

@@ -5,14 +5,32 @@ import { data } from './data';
 import { useTheme } from "@mui/material/styles";
 import classNames from "classnames";
 import { useMediaQuery } from "@mui/material";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css/pagination';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { IconButton } from '@mui/material';
+import ban_do from "../../assets/ban_do.jpg"
+
+
 
 
 const DetailRoomPage = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down(800));
-    // const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
     const { state } = useLocation();
     const navigate = useNavigate();
+
+    const handleItemClick = (e: any, item: any) => {
+        if (e.target.closest('.swiper-button-prev') || e.target.closest('.swiper-button-next')) {
+            e.stopPropagation();
+            return;
+        }
+
+        navigate(`/room-detail/1`, { state: item });
+    };
 
 
     return (
@@ -24,9 +42,32 @@ const DetailRoomPage = () => {
                     {
                         data.map((item) => {
                             return (
-                                <div data-aos="zoom-in" onClick={() => navigate(`/room-detail/1`, { state: item })} className={classNames("item-room", isMobile ? "item-room-mobile" : "")}>
+                                <div
+                                    data-aos="zoom-in"
+                                    onClick={(e) => handleItemClick(e, item)}
+                                    className={classNames("item-room", isMobile ? "item-room-mobile" : "")}
+                                >
                                     <div className='img-logo'>
-                                        <img src={item.hinhAnh} />
+                                        <Swiper
+                                            navigation={true}
+                                            pagination={true}
+                                            modules={[Navigation, Pagination]}
+                                            className="my-swiper-room"
+                                        >
+                                            {[1, 2, 3, 4, 5].map((i) => {
+                                                return (
+                                                    <SwiperSlide>
+                                                        <img src={item.hinhAnh} />
+                                                    </SwiperSlide>
+                                                )
+                                            })}
+                                        </Swiper>
+                                    </div>
+                                    <div className='desc-room'>
+                                        <p className='favorite'>Guest favorite</p>
+                                        <p className='icon-heart'>
+                                            <FavoriteBorderIcon classes={{ root: "icon" }} />
+                                        </p>
                                     </div>
                                     <div className={classNames("room-desc", isMobile ? "room-desc-mobile" : "")}>
                                         <div className="block-1">
@@ -54,7 +95,7 @@ const DetailRoomPage = () => {
             </div>
 
             <div className='detail-room-page_block-2'>
-                Bản đồ
+                <img src={ban_do} style={{ width: "100%", height:'800px', borderRadius:'8px' }} />
             </div>
 
         </div>

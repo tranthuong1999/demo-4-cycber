@@ -4,6 +4,7 @@
     flex-direction: row;
     gap: 30px;
     flex: 1;
+    position: relative;
 
     &-mobile {
         margin-top: 100px;
@@ -37,6 +38,31 @@
                 padding: 17px;
                 border-radius: 20px;
                 transition: 0.4s;
+                position: relative;
+
+                .desc-room {
+                    position: absolute;
+                    top: 23px;
+                    z-index: 100;
+                    width: 280px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 16px;
+
+                    .favorite {
+                        background-color: #fff;
+                        color: black;
+                        font-size: 16px;
+                        padding: 8px;
+                        border-radius: 12px;
+                        opacity: 0.8;
+                    }
+
+                    .icon-heart {
+                        color: #fff;
+                    }
+                }
 
                 &-mobile {
                     display: flex;
@@ -50,13 +76,35 @@
 
                 .img-logo {
                     flex: 1;
-                    height: 192px;
+                    width: 280px;
+
+                    .my-swiper-room {
+
+                        .swiper-button-prev,
+                        .swiper-button-next {
+                            background-color: #fff;
+                            border-radius: 100%;
+                            box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
+                            height: 28px;
+                            transition: all .3s;
+                            width: 28px;
+
+                            &::after {
+                                font-size: 12px;
+                                color: black;
+                            }
+                        }
+
+                        .swiper-pagination-bullet-active {
+                            background-color: #fff !important;
+                        }
+                    }
 
                     img {
                         width: 100%;
-                        height: 100%;
+                        height: 250px;
                         object-fit: cover;
-                        border-radius: 20px;
+                        border-radius: 10px;
                     }
                 }
 
@@ -111,8 +159,6 @@
 
     &_block-2 {
         flex: 1;
-        background-color: green;
-
     }
 
 }
