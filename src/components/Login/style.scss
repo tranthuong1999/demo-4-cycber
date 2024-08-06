@@ -47,11 +47,20 @@
 
             .email {
                 width: 100%;
+                height: 40px;
+                margin-bottom: 12px;
 
-                .MuiInputBase-input {
-                    height: 10px;
-                    background-color: rgba(128, 128, 128, 0.09) !important;
+                &-error {
+                    border: 1px solid #ff4d4f !important;
+
+                    &:focus-within {
+                        border: 1px solid #ff4d4f !important;
+                    }
                 }
+            }
+
+            .error {
+                color: #ff4d4f;
             }
         }
 
@@ -61,11 +70,12 @@
 
             .password {
                 width: 100%;
+                height: 40px;
+            }
 
-                .MuiInputBase-input {
-                    height: 10px;
-                    background-color: rgba(128, 128, 128, 0.09) !important;
-                }
+            .error {
+                color: #ff4d4f;
+                margin-top: 6px;
             }
         }
 
@@ -80,6 +90,10 @@
                 border: none;
                 border-radius: 8px;
                 font-size: 16px;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             .btn-register {

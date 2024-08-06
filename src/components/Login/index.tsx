@@ -2,16 +2,17 @@ import React from 'react';
 import "./style.scss";
 import ResponsiveModal from '../Modal';
 import useAuthenticationStore from '../../store/authentication';
-import { TextField } from '@mui/material';
+import { useForm } from "react-hook-form";
+import classNames from 'classnames';
+
 
 const LoginPage = () => {
 
     const { isLogin, setIsLogin, setIsRegister } = useAuthenticationStore();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleLoginSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Xử lý logic đăng nhập ở đây
-        console.log("submit")
+    const onSubmit = (data: any) => {
+        console.log("login data", data);
     };
 
     const contentLogin = () => {
@@ -19,14 +20,32 @@ const LoginPage = () => {
             <div className='content-page-login'>
                 <p className='icon-close' onClick={() => setIsLogin(false)}>X</p>
                 <h1 className='title'>Đăng nhập Airbnb</h1>
-                <form onSubmit={handleLoginSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <label className='label-email'>Email</label>
                     <div className='text-email'>
-                        <TextField placeholder="Vui lòng nhập tài khoản" type="email" classes={{ root: "email" }} />
+                        <input
+                            placeholder="Vui lòng điền email vào đây..."
+                            className={classNames("email", errors.email ? "email-error" : "")}
+                            {...register('email', {
+                                required: 'Email is required',
+                                pattern: {
+                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message: 'Email is not valid'
+                                }
+                            })}
+                        />
+                        {errors.email && <p className='error'>{String(errors.email.message)}</p>}
                     </div>
-                    <label className='label-password'>Mật khẩu</label>
+
+                    <label className="label-password ">Password</label>
                     <div className='text-password'>
-                        <TextField placeholder="Vui lòng nhập mật khẩu" type="password" classes={{ root: "password" }} />
+                        <input
+                            placeholder="Vui lòng điền mật khẩu vào đây..."
+                            className='password'
+                            type='password'
+                            {...register('password', { required: 'Password is required' })}
+                        />
+                        {errors.password && <p className='error'>{String(errors.password.message)}</p>}
                     </div>
                     <div className="button-authen">
                         <button className='btn btn-register'

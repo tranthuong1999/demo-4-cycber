@@ -14,7 +14,7 @@ const RegisterPage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data: any) => {
-        console.log(data);
+        console.log("register data", data);
     };
     const contentRegister = () => {
         return (
