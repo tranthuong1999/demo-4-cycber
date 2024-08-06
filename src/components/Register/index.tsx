@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import "./style.scss";
 import ResponsiveModal from '../Modal';
 import useAuthenticationStore from '../../store/authentication';
@@ -6,15 +6,31 @@ import { useForm } from "react-hook-form";
 import classNames from 'classnames';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import CommonSnackbar from '../SnackBar';
+
 
 const RegisterPage = () => {
-    const { isRegister, setIsRegister } = useAuthenticationStore();
+    const { isRegister, setIsRegister, apiRegister } = useAuthenticationStore();
     const [showPassword, setShowPassword] = useState(false);
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [isRegisterSuccess, setIsRegisterSuccess] = useState(false)
+    const [message, setMessage] = useState("");
 
-    const onSubmit = (data: any) => {
-        console.log("register data", data);
+    const onSubmit = async (data: any) => {
+        await apiRegister({ ...data, gender: false })
+            .then((result: any) => {
+                setIsRegisterSuccess(true);
+                if (result.statusCode === 200) {
+                    localStorage.setItem("user", JSON.stringify(result.content.user))
+                    setMessage("Đăng kí thành công")
+                    setTimeout(() => {
+                        setIsRegister(false);
+                    }, 1000);
+                }
+                else {
+                    setMessage("Đăng kí thất bại")
+                }
+            })
     };
     const contentRegister = () => {
         return (
@@ -114,12 +130,23 @@ const RegisterPage = () => {
     }
 
     return (
-        <ResponsiveModal
-            open={isRegister}
-            handleClose={() => setIsRegister(false)}
-            content={contentRegister()}
-            className='modal-register'
-        />
+        <>
+            <ResponsiveModal
+                open={isRegister}
+                handleClose={() => setIsRegister(false)}
+                content={contentRegister()}
+                className='modal-register'
+            />
+            {
+                <CommonSnackbar
+                    open={isRegisterSuccess}
+                    onClose={() => setIsRegisterSuccess(false)}
+                    message={message}
+                    duration={3000}
+                    isSuccess={message == "Đăng kí thành công" ? true : false}
+                />
+            }
+        </>
     )
 }
 

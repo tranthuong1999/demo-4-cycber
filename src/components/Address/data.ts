@@ -1,4 +1,4 @@
-export const data = [
+export const data_province = [
     { province: "Hồ Chí Minh", hour: "15 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/hnevi0eqxhxjgh6skplj.webp", router: "ho-chi-minh", maViTri: 1 },
     { province: "Cần Thơ", hour: "3 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/lbe3gpqkrwmzt98ce2nj.webp", router: "can-tho", maViTri: 2 },
     { province: "Nha Trang", hour: "6.5 phút lái xe", image: "https://res.cloudinary.com/rawn/image/upload/xi99sldgebhfvd3n66yx.webp", router: 'nha-trang', maViTri: 3 },
@@ -10,8 +10,8 @@ export const data = [
 ]
 
 export const data_any_where = [
-    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329222%2Fmjwqhra4wbzlvoo2pe27.jpg&w=1920&q=75", title: "Toàn bộ nhà" },
-    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329186%2Ffmoml05qcd0yk2stvl9r.jpg&w=1920&q=75", title: "Chỗ ở độc đáo" },
-    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329121%2Fguagj5r2bkccgr1paez3.jpg&w=1920&q=75", title: "Trang trại và thiên nhiên" },
-    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329252%2Fgqhtg9ua6jdrffhbrfv1.jpg&w=1920&q=75", title: "Cho phép mang theo thú cưng" },
+    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329222%2Fmjwqhra4wbzlvoo2pe27.jpg&w=1920&q=75", title: "Toàn bộ nhà" ,router: "ho-chi-minh",maViTri: 1},
+    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329186%2Ffmoml05qcd0yk2stvl9r.jpg&w=1920&q=75", title: "Chỗ ở độc đáo", router: 'nha-trang', maViTri: 3},
+    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329121%2Fguagj5r2bkccgr1paez3.jpg&w=1920&q=75", title: "Trang trại và thiên nhiên",router: "da-lat",maViTri: 7 },
+    { image: "https://rawn-airbnb.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Frawn%2Fimage%2Fupload%2Ff_webp%2Fq_auto%3Abest%2Fv1628329252%2Fgqhtg9ua6jdrffhbrfv1.jpg&w=1920&q=75", title: "Cho phép mang theo thú cưng",router: "da-nang",maViTri: 6 },
 ]

@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./style.scss";
 import ResponsiveModal from '../Modal';
 import useAuthenticationStore from '../../store/authentication';
 import { useForm } from "react-hook-form";
 import classNames from 'classnames';
-
+import CommonSnackbar from '../SnackBar';
 
 const LoginPage = () => {
 
-    const { isLogin, setIsLogin, setIsRegister } = useAuthenticationStore();
+    const { isLogin, setIsLogin, setIsRegister, apiLogin } = useAuthenticationStore();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [isLoginSuccess, setIsLoginSuccess] = useState(false)
+    const [message, setMessage] = useState("");
 
-    const onSubmit = (data: any) => {
-        console.log("login data", data);
+    const onSubmit = async (data: any) => {
+        await apiLogin(data)
+            .then((result: any) => {
+                setIsLoginSuccess(true);
+                if (result.statusCode === 200) {
+                    localStorage.setItem("user", JSON.stringify(result.content.user))
+                    setMessage("Đăng nhập thành công")
+                    setTimeout(() => {
+                        setIsLogin(false)
+                    }, 1000);
+                }
+                else {
+                    setMessage("Đăng nhập thất bại")
+                }
+            })
     };
 
     const contentLogin = () => {
@@ -62,15 +77,25 @@ const LoginPage = () => {
             </div>
         )
     }
-
-
     return (
-        <ResponsiveModal
-            open={isLogin}
-            handleClose={() => setIsLogin(false)}
-            content={contentLogin()}
-            className='modal-login'
-        />
+        <>
+            <ResponsiveModal
+                open={isLogin}
+                handleClose={() => setIsLogin(false)}
+                content={contentLogin()}
+                className='modal-login'
+            />
+            {
+                <CommonSnackbar
+                    open={isLoginSuccess}
+                    onClose={() => setIsLoginSuccess(false)}
+                    message={message}
+                    duration={3000}
+                    isSuccess={message == "Đăng nhập thành công" ? true : false}
+                />
+            }
+        </>
+
     )
 }
 

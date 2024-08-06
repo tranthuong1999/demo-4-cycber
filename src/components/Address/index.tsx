@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./style.scss";
 import { useTheme } from "@mui/material/styles";
 import classNames from "classnames";
 import { useMediaQuery } from "@mui/material";
-import { data, data_any_where } from './data';
+import { data_province, data_any_where } from './data';
 import { useNavigate } from 'react-router-dom';
+import useAuthenticationStore from '../../store/authentication';
 
 
 const AddressPage = () => {
@@ -12,13 +13,18 @@ const AddressPage = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down(600));
     const isTabnet = useMediaQuery(theme.breakpoints.between(600, 1024));
     const navigate = useNavigate();
+    const todos = useAuthenticationStore((state) => state.todos);
+
+    console.log("todos",todos)
+
+
     return (
         <div className='address-page'>
             <div className={classNames("location-block-3", isMobile ? "location-block-3-mobile" : "", isTabnet ? "location-block-3-tabnet" : "")}>
                 {
-                    data.map((item) => {
+                    data_province.map((item) => {
                         return (
-                            <div className='location-block-3_item' onClick={() => navigate(`/room/${item.router}`, { state: item.maViTri })}>
+                            <div data-aos="zoom-in" data-aos-duration={700} data-aos-delay={100} className='location-block-3_item' onClick={() => navigate(`/room/${item.router}`, { state: item.maViTri })}>
                                 <div className='img-logo'>
                                     <img src={item.image} />
                                 </div>
@@ -39,7 +45,9 @@ const AddressPage = () => {
                     {
                         data_any_where.map((item) => {
                             return (
-                                <div data-aos="zoom-in" data-aos-duration={700} data-aos-delay={100} className='location-block-4_item'>
+                                <div
+                                    onClick={() => navigate(`/room/${item.router}`, { state: item.maViTri })}
+                                    data-aos="zoom-in" data-aos-duration={700} data-aos-delay={100} className='location-block-4_item'>
                                     <div className='img-logo'>
                                         <img src={item.image} />
                                     </div>
