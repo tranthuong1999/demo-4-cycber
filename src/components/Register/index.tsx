@@ -3,10 +3,9 @@ import "./style.scss";
 import ResponsiveModal from '../Modal';
 import useAuthenticationStore from '../../store/authentication';
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import classNames from 'classnames';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const RegisterPage = () => {
     const { isRegister, setIsRegister } = useAuthenticationStore();
@@ -65,45 +64,36 @@ const RegisterPage = () => {
                         {errors.email && <p className='error'>{String(errors.email.message)}</p>}
                     </div>
                     <label className="name-label">Password</label>
-                    <div className="text-name">
+                    <div className="text-name-password">
                         <input
                             placeholder="Vui lòng điền mật khẩu vào đây..."
                             className={classNames("name", errors.name ? "name-error" : "")}
                             type={showPassword ? 'text' : 'password'}
                             {...register('password', { required: 'Password is required' })}
                         />
-                        {/* <span
-                            onClick={() => setShowPassword(!showPassword)}
-                            style={{
-                                position: 'absolute',
-                                right: '10px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            {showPassword ? <AirlineStopsIcon /> : <AddCircleIcon />}
-                        </span> */}
+                        <span onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <RemoveRedEyeIcon className='icon-show' /> : <VisibilityOffIcon className='icon-show' />}
+                        </span>
                         {errors.password && <p className='error'>{String(errors.password.message)}</p>}
                     </div>
 
                     {/* birth day */}
                     <div className='block-bottom'>
                         <div className='block-1'>
-                            <label htmlFor="birthday">Birthday</label>
+                            <label className="name-label">Birthday</label>
                             <div>
                                 <input
-                                    id="birthday"
+                                    className={classNames("birthday", errors.birthday ? 'birthday-error' : "")}
                                     type="date"
-                                    {...register('birthday', { required: 'Vui lòng chọn ngày sinh' })}
+                                    {...register('birthday', { required: 'Birthday is required' })}
                                 />
                                 {errors.birthday && <p className='error'>{String(errors.birthday.message)}</p>}
                             </div>
                         </div>
                         <div className='block-1'>
-                            <label htmlFor="gender">Gender</label>
+                            <label className="name-label">Gender</label>
                             <div>
-                                <select id="gender" {...register('gender', { required: 'Gender is required' })}>
+                                <select className={classNames("gender", errors.birthday ? 'birthday-error' : "")} {...register('gender', { required: 'Gender is required' })}>
                                     <option value="">Chọn giới tính</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
