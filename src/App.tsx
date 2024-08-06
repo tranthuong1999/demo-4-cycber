@@ -8,6 +8,7 @@ import AddressPage from './components/Address';
 import DetailRoomPage from './components/DetailRoom';
 import NotFoundPage from './components/NotFound';
 import RegisterRoomPage from './components/RegisterRoom';
+import InforUserPage from './components/InforUser';
 
 const App = () => {
 
@@ -49,6 +50,14 @@ const App = () => {
             <MainLayout>
               <AddressPage />
             </MainLayout>
+          }
+        />
+        <Route
+          path="/infor-user"
+          element={
+            <SecondaryLayout>
+              <InforUserPage />
+            </SecondaryLayout>
           }
         />
         <Route
