@@ -28,7 +28,7 @@ const InforUserPage = () => {
     useEffect(() => {
         const fetchRoomDetails = async () => {
             try {
-                const result = await apiGetRoomByUser(user.id);
+                const result = await apiGetRoomByUser(user?.id);
                 if (result.statusCode === 200) {
                     const roomDetailsPromises = result.content.map((item: any) => apiGetDetailRoom(item.maPhong));
                     const roomDetails = await Promise.all(roomDetailsPromises);
@@ -62,7 +62,7 @@ const InforUserPage = () => {
                 <p className='address'><DoneIcon /> Địa chỉ email</p>
             </div>
             <div className='infor-user-page_right'>
-                <h6 className='title'>Xin chào, tôi là <span>{user.name} </span></h6>
+                <h6 className='title'>Xin chào, tôi là <span>{user?.name} </span></h6>
                 <p className='start'>Bắt đầu tham gia vào 2023</p>
                 <div className='btn-edit'>
                     <button className='btn-resume'> Chỉnh sửa hồ sơ</button>

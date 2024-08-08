@@ -115,7 +115,51 @@
                 }
             }
 
-            .form-register {
+            .infor-user {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                gap: 16px;
+                align-items: center;
+                transition: 0.4s;
+
+                &:hover {
+                    cursor: pointer;
+                    .name-user {
+                        text-decoration: underline;
+                    }
+                }
+
+                .btn {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    border-radius: 50%;
+                    transition: 0.4s;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: #fff;
+                    }
+
+                    .img-btn {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+
+                .name-user {
+                    font-weight: bold;
+                    font-size: 20px;
+                    text-transform: uppercase;
+                }
+
+
+            }
+
+            .form-register,
+            .form-show-infor-user {
                 position: absolute;
                 display: flex;
                 flex-direction: column;
@@ -143,8 +187,53 @@
                         cursor: pointer;
                     }
                 }
+            }
 
+            .form-show-infor-user {
+                border-radius: 8px;
+                padding: 12px;
 
+                .item-infor {
+                    display: flex;
+                    gap: 12px;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: green;
+
+                    .block-1 {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #fff;
+                        align-items: center;
+                    }
+
+                    .block-2,
+                    .block-3 {
+                        button {
+                            width: 100%;
+                            background-color: green;
+                            border: none;
+                            padding: 8px;
+                            transition: 0.4s;
+                            font-size: 14px;
+                            border-radius: 4px;
+
+                            &:hover {
+                                cursor: pointer;
+                                background-color: #fff;
+                            }
+                        }
+                    }
+
+                    .block-3 {
+                        padding-bottom: 20px;
+                        button{
+                            color: #00ff62;
+                        }
+                    }
+                }
             }
 
             .btn {

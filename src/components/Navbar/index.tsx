@@ -45,6 +45,7 @@ const MenuPage = (() => {
         const parts = location.pathname.split('/');
         return item.router === parts[parts.length - 1];
     })
+    const [showInforUser, setShowInfoUser] = useState(false)
 
     const { isLogin, setIsLogin, isRegister, setIsRegister } = useAuthenticationStore();
 
@@ -85,6 +86,58 @@ const MenuPage = (() => {
         )
     }
 
+    const renderContentInforUser = () => {
+        return (
+            <div data-aos="fade-down" data-aos-duration={700} className={classNames("form-show-infor-user", (isMobile || isTabnet) ? "form-show-infor-user-mobile" : "")}>
+                <div className='item-infor'>
+                    <div className='block-1'>
+                        <p> {currentUer?.name}</p>
+                        <p> {currentUer?.email}</p>
+                    </div>
+                    <div className='block-2' onClick={() => navigate("/infor-user")}>
+                        <button> Dashboard</button>
+                    </div>
+                    <div className='block-2'>
+                        <button> Settings</button>
+                    </div>
+                    <div className='block-2'>
+                        <button> Earnings</button>
+                    </div>
+                    <div className='block-3'
+                        onClick={() => {
+                            localStorage.clear();
+                            navigate("/");
+                        }}
+                    >
+                        <button> Signouts</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    const renderEventUser = () => {
+        return (
+            <div className='event-user'>
+                <button className='btn' onClick={() => setOpenModalAuthen(!openModalAuthen)}>
+                    <span> <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" className='img-btn' /></span>
+                </button>
+            </div>
+        )
+    }
+
+    const renderInforUser = () => {
+        return (
+            <div className='infor-user' onClick={() => setShowInfoUser(!showInforUser)}>
+                <div className='btn'>
+                    <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" className='img-btn' />
+                </div>
+                <p className='name-user'> {currentUer?.name}</p>
+            </div>
+        )
+    }
+
+
     return (
         <div className={classNames("all-menu", location.pathname === "/" ? 'all-menu-main' : 'all-menu-secondary')}>
             {location.pathname !== "/" && <p className="province">
@@ -111,24 +164,19 @@ const MenuPage = (() => {
                                             </li>)
                                         }
                                     </div>
-                                    <div className='event-user'>
-                                        <button className='btn' onClick={() => setOpenModalAuthen(!openModalAuthen)}>
-                                            <span> <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" className='img-btn' /></span>
-                                        </button>
-                                    </div>
+                                    {currentUer ? renderInforUser() : renderEventUser()}
                                     {
                                         openModalAuthen && renderContentAuthen()
+                                    }
+                                    {
+                                        showInforUser && renderContentInforUser()
                                     }
                                 </>
                             )
                             :
                             (
                                 <div className='menu-mobile'>
-                                    <div className='event-user'>
-                                        <button className='btn' onClick={() => setOpenModalAuthen(!openModalAuthen)}>
-                                            <span> <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" className='img-btn' /></span>
-                                        </button>
-                                    </div>
+                                    {currentUer ? renderInforUser() : renderEventUser()}
                                     <div onClick={toggleDrawer(!open)} className='icon-menu'>
                                         <DehazeIcon sx={{ color: "black" }} />
                                     </div>
@@ -137,6 +185,9 @@ const MenuPage = (() => {
                                     </Drawer>
                                     {
                                         openModalAuthen && renderContentAuthen()
+                                    }
+                                    {
+                                        showInforUser && renderContentInforUser()
                                     }
                                 </div>
                             )
