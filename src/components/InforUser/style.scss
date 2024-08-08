@@ -140,3 +140,93 @@
         }
     }
 }
+
+.modal-update-user-infor {
+    .update-infor-user {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .block-1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .icon-close {
+                font-size: 20px;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 4px;
+                transition: 0.4s;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: grey;
+                }
+            }
+        }
+
+        .block-2 {
+            .block-2-form {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+
+                .block-2-child {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+
+                    .name-label {
+                        opacity: 0.8;
+                        display: flex;
+                        gap: 6px;
+                        align-items: center;
+                        span{
+                            color: red;
+                        }
+                    }
+
+                    input,
+                    .gender {
+                        height: 35px;
+                        border-radius: 4px;
+                        width: 100%;
+                        border-color: #1677ff;
+                        box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+                        outline: 0;
+                        background-color: #ffffff;
+                    }
+                }
+
+                .error {
+                    color: #ff4d4f;
+                    margin-top: 6px;
+                }
+            }
+
+            .div-update {
+                display: flex;
+                justify-content: flex-end;
+                padding: 20px;
+
+                .btn-update {
+                    padding: 8px 12px;
+                    border-radius: 8px;
+                    border: none;
+                    color: #fff;
+                    background: #1677ff;
+                    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+}

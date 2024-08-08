@@ -10,6 +10,7 @@ interface AuthenticationStore {
     setIsLogin: (status: boolean) => void;
     isRegister: boolean;
     setIsRegister: (status: boolean) => void;
+    apiUpdateUser: any;
 }
 
 type type_register = {
@@ -49,6 +50,23 @@ const useAuthenticationStore = create<AuthenticationStore>((set) => ({
         try {
             const response = await fetch(`${BASE_URL}/auth/signin`, {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'tokencybersoft': `${token}`,
+                },
+                body: JSON.stringify(data),
+            });
+            const result: any = await response.json();
+            return result;
+        }
+        catch (error) {
+            return error;
+        }
+    },
+    apiUpdateUser: async (user_id: number, data: any) => {
+        try {
+            const response = await fetch(`${BASE_URL}/users/${user_id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'tokencybersoft': `${token}`,
