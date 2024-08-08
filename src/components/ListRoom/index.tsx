@@ -5,10 +5,11 @@ import classNames from "classnames";
 import { useMediaQuery } from "@mui/material";
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { data_province } from '../Address/data';
 
 
 const ListRoomCommon = (props: { data: any[] }) => {
@@ -16,14 +17,31 @@ const ListRoomCommon = (props: { data: any[] }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down(800));
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleItemClick = (e: any, item: any) => {
         if (e.target.closest('.swiper-button-prev') || e.target.closest('.swiper-button-next')) {
             e.stopPropagation();
             return;
         }
-        navigate(`/room-detail/1`, { state: item });
+        navigate(`/room-detail/${item.id}`, { state: item.id });
     };
+
+    const province = data_province.find((item) => {
+        const parts = location.pathname.split('/');
+        return item.router === parts[parts.length - 1];
+    })
+
+    // const check_tinh = data.map((item: any) => {
+    //     const find_tinh = data_province.find((i) => item.maViTri === i.maViTri)
+    //     return {
+    //         ...item,
+    //         ...find_tinh
+    //     }
+    // })
+
+    // console.log("check tinh", check_tinh);
+
 
     return (
         <div className={classNames("list-room")}>
@@ -60,18 +78,19 @@ const ListRoomCommon = (props: { data: any[] }) => {
                             </div>
                             <div className={classNames("room-desc", isMobile ? "room-desc-mobile" : "")}>
                                 <div className="block-1">
-                                    <p className='title-1'> Toàn bộ căn hộ dịch vụ tại Hồ Chí Minh</p>
-                                    <p className='title-2'>STUDIO MỚI NETFLIX MIỄN PHÍ/ĐỖ XE MIỄN PHÍ.STUDIO MỚI NETFLIX MIỄN PHÍ/ĐỖ XE MIỄN PHÍ</p>
+                                    {/* @ts-ignore */}
+                                    <p className='title-1'> Toàn bộ căn hộ dịch vụ tại {province?.province}</p>
+                                    <p className='title-2'>{item.tenPhong}</p>
                                     <span></span>
                                     <p className='title-3'>
-                                        3 Khách • Phòng Studio • 1 Phòng ngủ • 1 giường • 1 Phòng tắm
+                                        {item?.khach && "Khách •"} {item?.studio && "Phòng Studio •"} {item?.phongNgu && "Phòng ngủ •"} {item?.giuong && "Giường •"} {item?.phongTam && "Phòng tắm •"}
                                     </p>
                                     <p className='title-4'>
-                                        Wifi • Máy giặt • Ti vi  • Đỗ xe  • Hồ bơi
+                                        {item.wifi && "Wifi •"} {item.mayGiat && "Máy giặt •"}  {item.tivi && "Ti vi •"} {item?.doXe && "Đỗ xe •"} {item?.hoBoi && "Hồ bơi •"}
                                     </p>
                                 </div>
 
-                                <div className="block-2"> <span>$ 28 </span> / đêm</div>
+                                <div className="block-2"> <span>$ {item.giaTien} </span> / đêm</div>
 
                             </div>
 

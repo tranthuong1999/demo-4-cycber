@@ -38,7 +38,7 @@ const MenuPage = (() => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const currentUer = JSON?.parse(localStorage?.getItem("currentUser")!)
+    const currentUer = JSON?.parse(localStorage?.getItem("user")!)
     const [open, setOpen] = React.useState(false);
     const [openModalAuthen, setOpenModalAuthen] = useState(false);
     const province = data_province.find((item) => {
@@ -85,12 +85,10 @@ const MenuPage = (() => {
         )
     }
 
-
-    console.log("openModalAuthen", openModalAuthen)
-
     return (
         <div className={classNames("all-menu", location.pathname === "/" ? 'all-menu-main' : 'all-menu-secondary')}>
-            {location.pathname !== "/" && <p className="province"> {province?.province}</p>}
+            {location.pathname !== "/" && <p className="province">
+                {province?.province || <span>Thông tin người dùng {currentUer?.name}</span>}</p>}
             <div className={classNames("menu", (isMobile || isTabnet) ? "menu-screen-small" : "")}>
                 <div className='menu-bar'>
                     <div className='img-logo'>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./style.scss"
 import { data } from './data';
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
@@ -9,21 +9,87 @@ import { useTheme } from "@mui/material/styles";
 import classNames from "classnames";
 import { useMediaQuery } from "@mui/material";
 import WifiIcon from '@mui/icons-material/Wifi';
+import CommentPage from '../Comment';
+import { useLocation } from 'react-router-dom';
+import useListRoomStore from '../../store/room';
+import CommonSnackbar from '../SnackBar';
+import ResponsiveModal from '../Modal';
+import moment from 'moment';
 
 const RegisterRoomPage = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(800));
+  const { state } = useLocation();
+  const { apiFetchDetailRoom, apiFetchListCommentbyRoom, apiRegisterRoom, detailRoom } = useListRoomStore();
+  const [guest, setGuest] = useState(1);
+  const [warningBookRoom, setWarningBookRoom] = useState(false);
+  const [warning, setWarning] = useState(false);
+  const userString = localStorage.getItem("user");
+  const user = userString && userString !== "undefined" ? JSON.parse(userString) : null;
+  const [confirmBookRoom, setConfirmBookRoom] = useState(false);
+  const [notifyBookRoom, setNotifyBookRoom] = useState(false);
+
+  useEffect(() => {
+    apiFetchDetailRoom(state)
+    apiFetchListCommentbyRoom(state)
+  }, [state])
+
+  const handleOpenPopupConfirmRoom = () => {
+    if (!user) {
+      setWarning(true);
+      return;
+    }
+    setConfirmBookRoom(true)
+  }
+
+  const handleBookRoom = async () => {
+    const currentTime = moment().format('YYYY-MM-DDTHH:mm:ss');
+    const oneWeekAgo = moment().subtract(1, 'weeks').format('YYYY-MM-DDTHH:mm:ss');
+    await apiRegisterRoom({
+      maNguoiDung: user.id,
+      ngayDen: currentTime,
+      ngayDi: oneWeekAgo,
+      maPhong: state,
+      soLuongKhach: 1
+    })
+      .then((res: any) => {
+        if (res.statusCode == 201) {
+          setNotifyBookRoom(true)
+          setTimeout(() => {
+            setConfirmBookRoom(false)
+          }, 1000)
+        }
+        else {
+          setNotifyBookRoom(false)
+        }
+      })
+
+  }
+  const contentBookRoom = () => {
+    return (
+      <div className='confirm-book-room'>
+        <h1>Bạn có chắc muốn đặt phòng #{detailRoom.khach} này?</h1>
+        <p className='icon-close' onClick={() => setConfirmBookRoom(false)}> X</p>
+        <p>Ngày sử dụng: 08-08-2024 - 15-08-2024</p>
+        <p>Lượng khách: 02</p>
+        <div className='btn'>
+          <button onClick={handleBookRoom} className='btn-confirm'> Xác nhận</button>
+        </div>
+      </div>
+    )
+  }
+
 
 
 
 
   return (
     <div className='register-room-page'>
-      <h1 className='title'> NewApt D1 - Cozy studio - NU apt - 500m Bui Vien!</h1>
+      <h1 className='title'> {detailRoom?.tenPhong}</h1>
       <p className='desc'> <span><AccessibilityIcon />  </span>Chủ nhà siêu cấp <span> Hồ Chí Minh, Việt Nam</span></p>
       <div className='img-logo'>
-        <img src={data.hinhAnh} />
+        <img src={detailRoom.hinhAnh} />
         <div className='icon-previous'><RemoveRedEyeIcon />Xem trước</div>
       </div>
       <div className={classNames("block-1", isMobile ? "block-1-mobile" : "")}>
@@ -97,7 +163,7 @@ const RegisterRoomPage = () => {
 
         <div className='block-1_child-2'>
           <div className='child-item_block-1'>
-            <p> <span>$28/ </span>night</p>
+            <p> <span>${detailRoom.giaTien}/ </span>night</p>
             <p> <span> <Rating sx={{ color: "rgb(251, 92, 91)" }} max={1} defaultValue={1} size="small" /></span> <span className='count'>1.55</span><span className='review'>(42) đánh giá</span></p>
           </div>
 
@@ -115,12 +181,32 @@ const RegisterRoomPage = () => {
 
             <div className='child-item_block-2_child_2'>
               <p className='guest'>Khách</p>
-              <p className='guest-room'> <span className='descrease'>-</span>1 khách <span className='incease'>+</span></p>
+              <p className='guest-room'>
+                <span
+                  className='descrease' onClick={() => {
+                    setGuest((prev) => prev < 2 ? 1 : guest - 1)
+                  }}>
+                  -
+                </span>
+                {guest} khách
+                <span className='incease'
+                  onClick={() => {
+                    setGuest((prev) => {
+                      if (prev > detailRoom.khach!) {
+                        setWarningBookRoom(true);
+                      }
+                      return prev > detailRoom.khach! ? detailRoom.khach! : guest + 1;
+                    })
+                  }}
+                >
+                  +
+                </span>
+              </p>
             </div>
           </div>
 
           <div className='child-item_block-3'>
-            <button>Đặt phòng</button>
+            <button onClick={handleOpenPopupConfirmRoom}>Đặt phòng</button>
           </div>
           <p className='decrease-money'>Bạn vẫn chưa bị trừ tiền</p>
 
@@ -167,11 +253,44 @@ const RegisterRoomPage = () => {
         </div>
         <div className='block-2_child-2'>
         </div>
-
-
       </div>
-
-
+      <CommentPage />
+      {
+        warningBookRoom &&
+        <CommonSnackbar
+          open={warningBookRoom}
+          onClose={() => setWarningBookRoom(false)}
+          message='Không được đặt quá số phòng'
+          isSuccess={false}
+        />
+      }
+      {
+        warning &&
+        <CommonSnackbar
+          open={warning}
+          onClose={() => setWarning(false)}
+          message='Vui lòng đăng nhập để đặt phòng'
+          isSuccess={false}
+        />
+      }
+      {
+        notifyBookRoom &&
+        <CommonSnackbar
+          open={notifyBookRoom}
+          onClose={() => setNotifyBookRoom(false)}
+          message='Đặt phòng thành công'
+          isSuccess={true}
+        />
+      }
+      {
+        confirmBookRoom &&
+        <ResponsiveModal
+          open={confirmBookRoom}
+          handleClose={() => setConfirmBookRoom(false)}
+          content={contentBookRoom()}
+          className='confirm-book-room-modal'
+        />
+      }
     </div>
   )
 }

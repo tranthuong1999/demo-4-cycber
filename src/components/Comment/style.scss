@@ -1,0 +1,120 @@
+.comment-page {
+    padding-top: 30px;
+    border-top: 1px solid rgb(209, 213, 219);
+
+    .no-login {
+        p {
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            padding: 12px;
+            border-radius: 4px;
+        }
+    }
+
+    .img-logo-com {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+            width: 46px;
+            height: 46px;
+        }
+
+        .hello {
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+
+    .rating {
+        padding: 12px 0;
+    }
+
+    .content-review {
+        padding-bottom: 12px;
+
+        .input-review {
+            width: 100%;
+            background-color: #fff;
+
+            .MuiInputBase-input {
+                height: 65px;
+            }
+        }
+    }
+
+    .btn {
+        padding-bottom: 30px;
+        .btn-review {
+            padding: 12px;
+            border-radius: 8px;
+            background-color: rgb(251, 92, 91);
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            transition: 0.4s;
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgb(55, 65, 81);
+
+            }
+        }
+    }
+
+    .comment {
+        margin-top: 30px;
+        border-top: 1px solid rgb(209, 213, 219);
+        .content-comment {
+            padding: 16px 0;
+        }
+
+        .list-comment {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+
+            &-mobile {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .item-comment {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+
+                .block-1 {
+                    .img-logo-comment {
+                        width: 48px;
+                        height: 48px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .avartar-2 {
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .hello {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+                }
+
+                .block-2 {
+                    max-width: 300px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+            }
+        }
+    }
+
+}
