@@ -107,6 +107,7 @@ const MenuPage = (() => {
                         onClick={() => {
                             localStorage.clear();
                             navigate("/");
+                            setShowInfoUser(false);
                         }}
                     >
                         <button> Signouts</button>

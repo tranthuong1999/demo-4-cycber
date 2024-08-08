@@ -9,6 +9,7 @@ import DetailRoomPage from './components/DetailRoom';
 import NotFoundPage from './components/NotFound';
 import RegisterRoomPage from './components/RegisterRoom';
 import InforUserPage from './components/InforUser';
+import VideoPlayer from './components/Video';
 
 const App = () => {
 
@@ -39,6 +40,19 @@ const App = () => {
     );
   };
 
+  const ThirdLayout: React.FC<LayoutProps> = ({ children }) => {
+    return (
+      <>
+        <MenuPage />
+        <VideoPlayer/>
+        <LocationPage />
+        {children}
+        <FooterPage />
+        <BackTop />
+      </>
+    );
+  };
+
 
 
   return (
@@ -47,9 +61,9 @@ const App = () => {
         <Route
           path="/"
           element={
-            <MainLayout>
+            <ThirdLayout>
               <AddressPage />
-            </MainLayout>
+            </ThirdLayout>
           }
         />
         <Route

@@ -1,0 +1,19 @@
+.video-player {
+    .custom-video {
+        width: 100% !important;
+        height: 700px !important;
+        object-fit: cover;
+
+        &:hover {
+            .ytp-watermark {
+                opacity: 0 !important;
+            }
+
+            .ytp-title-link {
+                opacity: 0 !important;
+            }
+        }
+
+
+    }
+}
